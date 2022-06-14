@@ -1,6 +1,8 @@
 package fr.eql.ai111.groupe1.annuaire.agile;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,7 +15,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SupAdmin extends Application {
     ReaderDAO dao = new ReaderDAO();
@@ -35,12 +43,25 @@ public class SupAdmin extends Application {
         //Utilisé dans le fichier css pour identifier le noeud
         //titre.setId("titreText");
 
-        Label loginLabel = new Label("Login");
-        TextField loginNew = new TextField();
-        //loginNew.setPromptText("login");
-      //  loginNew.setFocusTraversable(false);
-        grille.add(loginLabel,0,2);
-        grille.add(loginNew,0,3);
+//        File root = new File("C:/Users/Formation/Documents/Projects/Annuaire-Agile-G1-AI111/Connexion");
+//        FileReader fr = new FileReader("Connexion");
+
+
+//        ObservableList <String> data =createFileList() ;
+        File root = new File("Connexion");
+        String[] content = root.list();
+
+
+        ChoiceBox roleBox = new ChoiceBox();
+        roleBox.getItems().addAll
+                (content);
+//        Label loginLabel = new Label("Login");
+//        TextField loginNew = new TextField();
+//        loginNew.setPromptText("login");
+//        loginNew.setFocusTraversable(false);
+        grille.add(roleBox,0,2);
+//        grille.add(loginLabel,0,2);
+//        grille.add(loginNew,0,3);
 
         Button btnSup = new Button("Supprimer");
         btnSup.getStyleClass().add("fancy-button");
@@ -55,8 +76,10 @@ public class SupAdmin extends Application {
         btnSup.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(loginNew.getText());
-                File renamedFile = new File("Connexion/" +loginNew.getText()+ ".lib");
+
+
+                File renamedFile = new File("Connexion/" +roleBox.getValue());
+//                File renamedFile = new File("Connexion/" +loginNew.getText() + ".lib");
                 boolean isRenamed = renamedFile.renameTo(renamedFile);
                 boolean isDeleted = renamedFile.delete();
 
@@ -70,7 +93,8 @@ public class SupAdmin extends Application {
                 Alert confirmerSortie = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmerSortie.setTitle("Confirmation");
                 confirmerSortie.setHeaderText(null);
-                confirmerSortie.setContentText("Le compte Administrateur  " + loginNew.getText() + "  a été supprimé avec succès. " );
+                confirmerSortie.setContentText("Le compte Administrateur  " + roleBox.getValue() + "  a été supprimé avec succès. " );
+//                confirmerSortie.setContentText("Le compte Administrateur  " + roleBox.getValue() + "  a été supprimé avec succès. " );
                 confirmerSortie.setGraphic(null);
                 confirmerSortie.getButtonTypes().removeAll(ButtonType.OK,ButtonType.CANCEL);
                 ButtonType btnOui = new ButtonType("ok");
@@ -110,4 +134,18 @@ public class SupAdmin extends Application {
         primaryStage.setTitle("Fenêtre d'Authentification");
         primaryStage.show();
     }
+
+//    public Set<String> listFilesUsingJavaIO(String dir) {
+//        return Stream.of(new File(dir).listFiles())
+//                .filter(file -> !file.isDirectory())
+//                .map(File::getName)
+//                .collect(Collectors.toSet());
+//    }
+//
+//    private ObservableList<String> createFileList() {
+//
+//        SupAdmin accounts = null;
+//        ObservableList<String> list = FXCollections.observableArrayList(accounts.listFilesUsingJavaIO("Connexion"));
+//        return list;
+//    }
 }
