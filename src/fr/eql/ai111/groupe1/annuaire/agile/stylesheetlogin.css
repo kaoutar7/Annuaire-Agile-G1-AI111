@@ -1,0 +1,41 @@
+.root {
+ -fx-font-family:'JetBrains Mono';
+ -fx-font-size: 20px;
+ -fx-font-weight:normal;
+
+ -fx-background-image:url("login2.png");
+ -fx-background-repeat: no-repeat;
+ -fx-background-size: stretch;
+}
+
+.button{
+    -fx-pref-width: 150px;
+}
+
+.fancy-button{
+-fx-background-color:red;
+-fx-text-fill:white;
+}
+
+.fancy-button:hover {
+-fx-background-color:yellow;
+-fx-text-fill: red;
+}
+
+.fancy-button:pressed{
+-fx-background:color:green;
+-fx-text-fill:white;
+}
+
+.text-field{
+-fx-border-color: blue;
+-fx-border-width:3px;
+-fx-border-radius:25px;
+-fx-background-radius:25px;
+-fx-pref-column-count:10;
+
+}
+
+.label{
+-fx-text-fill:white;
+}

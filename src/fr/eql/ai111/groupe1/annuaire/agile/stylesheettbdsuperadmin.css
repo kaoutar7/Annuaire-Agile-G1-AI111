@@ -1,0 +1,41 @@
+.root {
+ -fx-font-family:'JetBrains Mono';
+ -fx-font-size: 20px;
+ -fx-font-weight:bold;
+
+ -fx-background-image:url("background.png");
+ -fx-background-repeat: no-repeat;
+ -fx-background-size: stretch;
+}
+
+.button{
+    -fx-pref-width: 200px;
+}
+
+
+}
+
+.fancy-button:hover {
+
+-fx-text-fill:#000080;
+}
+
+.fancy-button:pressed{
+-fx-background:color:green;
+-fx-text-fill:white;
+}
+
+.text-field{
+-fx-border-color: blue;
+-fx-border-width:3px;
+-fx-border-radius:25px;
+-fx-background-radius:25px;
+-fx-pref-column-count:350;
+
+
+}
+
+.label{
+-fx-text-fill:light blue;
+
+}
